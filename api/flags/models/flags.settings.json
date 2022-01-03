@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "flags",
+  "info": {
+    "name": "flags",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "candidate": {
+      "via": "flags",
+      "model": "candidates"
+    },
+    "flag_note": {
+      "type": "richtext"
+    },
+    "active": {
+      "type": "boolean",
+      "default": false
+    },
+    "flagged_by": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "added_flags"
+    },
+    "actioned_to": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "flag_actions"
+    }
+  }
+}

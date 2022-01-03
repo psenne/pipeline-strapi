@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contracts",
+  "info": {
+    "name": "contracts",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "number": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "pop": {
+      "type": "string"
+    },
+    "potential_candidate": {
+      "via": "potential_contracts",
+      "model": "candidates"
+    },
+    "manager": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "contracts"
+    }
+  }
+}

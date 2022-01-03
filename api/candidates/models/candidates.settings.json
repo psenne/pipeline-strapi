@@ -1,0 +1,132 @@
+{
+  "kind": "collectionType",
+  "collectionName": "candidates",
+  "info": {
+    "name": "candidates",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "emailaddress": {
+      "type": "email"
+    },
+    "telephone": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "found_by": {
+      "type": "string"
+    },
+    "interview_date": {
+      "type": "datetime"
+    },
+    "location": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string"
+    },
+    "loi_status": {
+      "type": "enumeration",
+      "enum": [
+        "notsent",
+        "sent",
+        "accepted"
+      ],
+      "default": "notsent"
+    },
+    "notes": {
+      "type": "richtext"
+    },
+    "loi_sent_date": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "initial",
+        "interviewed",
+        "recruiting",
+        "active",
+        "processing"
+      ],
+      "default": "initial"
+    },
+    "skill": {
+      "type": "string"
+    },
+    "salary": {
+      "type": "string"
+    },
+    "resume_text": {
+      "type": "richtext"
+    },
+    "prefered_location": {
+      "type": "string"
+    },
+    "comments": {
+      "via": "candidate",
+      "collection": "comments"
+    },
+    "potential_contracts": {
+      "via": "potential_candidate",
+      "collection": "contracts"
+    },
+    "submissions": {
+      "via": "candidate",
+      "collection": "submissions"
+    },
+    "flags": {
+      "via": "candidate",
+      "collection": "flags"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false
+    },
+    "current_contract": {
+      "type": "string"
+    },
+    "current_company": {
+      "type": "string"
+    },
+    "at_risk": {
+      "type": "boolean",
+      "default": false
+    },
+    "authored_by": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "candidate_created"
+    },
+    "modified_by": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "candidate_modified"
+    },
+    "interviewed_by": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "candidates_interviewed",
+      "dominant": true
+    },
+    "loi_sent_by": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "loi_sent_to"
+    }
+  }
+}

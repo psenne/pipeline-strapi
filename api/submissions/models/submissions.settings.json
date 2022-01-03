@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "submissions",
+  "info": {
+    "name": "Submissions",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "position": {
+      "model": "positions",
+      "via": "submissions"
+    },
+    "submitted_by": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "candidate": {
+      "via": "submissions",
+      "model": "candidates"
+    }
+  }
+}

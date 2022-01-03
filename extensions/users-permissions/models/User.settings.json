@@ -1,0 +1,105 @@
+{
+  "kind": "collectionType",
+  "collectionName": "users-permissions_user",
+  "info": {
+    "name": "user",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false,
+    "timestamps": true
+  },
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true
+    },
+    "confirmationToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "model": "role",
+      "via": "users",
+      "plugin": "users-permissions",
+      "configurable": false
+    },
+    "comments": {
+      "via": "author",
+      "collection": "comments"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "added_flags": {
+      "via": "flagged_by",
+      "collection": "flags"
+    },
+    "candidate_created": {
+      "via": "authored_by",
+      "collection": "candidates"
+    },
+    "candidate_modified": {
+      "via": "modified_by",
+      "collection": "candidates"
+    },
+    "flag_actions": {
+      "via": "actioned_to",
+      "collection": "flags"
+    },
+    "contracts": {
+      "via": "manager",
+      "collection": "contracts"
+    },
+    "candidates_interviewed": {
+      "via": "interviewed_by",
+      "collection": "candidates"
+    },
+    "loi_sent_to": {
+      "via": "loi_sent_by",
+      "collection": "candidates"
+    }
+  }
+}

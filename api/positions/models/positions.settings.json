@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "positions",
+  "info": {
+    "name": "positions",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "level": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "skill_summary": {
+      "type": "richtext"
+    },
+    "position_id": {
+      "type": "string"
+    },
+    "contract": {
+      "model": "contracts"
+    },
+    "submissions": {
+      "via": "position",
+      "collection": "submissions"
+    }
+  }
+}
