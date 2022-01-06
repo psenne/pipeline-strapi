@@ -33,9 +33,6 @@
     "interview_date": {
       "type": "datetime"
     },
-    "location": {
-      "type": "string"
-    },
     "level": {
       "type": "string"
     },
