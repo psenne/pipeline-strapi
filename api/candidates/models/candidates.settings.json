@@ -24,9 +24,6 @@
     "telephone": {
       "type": "string"
     },
-    "title": {
-      "type": "string"
-    },
     "found_by": {
       "type": "string"
     },
@@ -99,10 +96,6 @@
     },
     "current_company": {
       "type": "string"
-    },
-    "at_risk": {
-      "type": "boolean",
-      "default": false
     },
     "authored_by": {
       "plugin": "users-permissions",
