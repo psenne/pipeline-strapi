@@ -29,6 +29,10 @@
       "plugin": "users-permissions",
       "model": "user",
       "via": "contracts"
+    },
+    "positions": {
+      "via": "contract",
+      "collection": "positions"
     }
   }
 }

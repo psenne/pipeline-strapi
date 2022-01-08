@@ -31,7 +31,8 @@
       "type": "string"
     },
     "contract": {
-      "model": "contracts"
+      "model": "contracts",
+      "via": "positions"
     },
     "submissions": {
       "via": "position",

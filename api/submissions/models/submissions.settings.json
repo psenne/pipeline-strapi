@@ -13,8 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "position": {
-      "model": "positions",
-      "via": "submissions"
+      "via": "submissions",
+      "model": "positions"
     },
     "submitted_by": {
       "plugin": "users-permissions",
