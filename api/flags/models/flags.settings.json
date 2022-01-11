@@ -31,7 +31,9 @@
     "actioned_to": {
       "plugin": "users-permissions",
       "model": "user",
-      "via": "flag_actions"
+      "via": "flag_actions",
+      "collection": "user",
+      "dominant": true
     }
   }
 }
