@@ -33,6 +33,10 @@
     "positions": {
       "via": "contract",
       "collection": "positions"
+    },
+    "employees": {
+      "via": "currentcontract",
+      "collection": "employees"
     }
   }
 }

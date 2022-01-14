@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employees",
+  "info": {
+    "name": "Employees",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "emailaddress": {
+      "type": "email"
+    },
+    "telephone": {
+      "type": "string"
+    },
+    "found_by": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string"
+    },
+    "salary": {
+      "type": "string"
+    },
+    "resume_text": {
+      "type": "richtext"
+    },
+    "hired_on": {
+      "type": "datetime"
+    },
+    "birthday": {
+      "type": "datetime"
+    },
+    "at_risk": {
+      "type": "boolean",
+      "default": false
+    },
+    "currentcontract": {
+      "via": "employees",
+      "model": "contracts"
+    },
+    "notes": {
+      "type": "richtext"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}
