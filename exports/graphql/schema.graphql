@@ -1,0 +1,1751 @@
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+enum ENUM_CANDIDATES_LOI_STATUS {
+  notsent
+  sent
+  accepted
+}
+
+enum ENUM_CANDIDATES_STATUS {
+  initial
+  interviewed
+  recruiting
+  active
+  processing
+}
+
+type Candidates {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  firstname: String
+  lastname: String
+  emailaddress: String
+  telephone: String
+  found_by: String
+  interview_date: DateTime
+  level: String
+  loi_status: ENUM_CANDIDATES_LOI_STATUS
+  notes: String
+  loi_sent_date: DateTime
+  status: ENUM_CANDIDATES_STATUS
+  skill: String
+  salary: String
+  resume_text: String
+  prefered_location: String
+  archived: Boolean
+  current_contract: String
+  current_company: String
+  authored_by: UsersPermissionsUser
+  modified_by: UsersPermissionsUser
+  loi_sent_by: UsersPermissionsUser
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comments]
+  potential_contracts(sort: String, limit: Int, start: Int, where: JSON): [Contracts]
+  submissions(sort: String, limit: Int, start: Int, where: JSON): [Submissions]
+  flags(sort: String, limit: Int, start: Int, where: JSON): [Flags]
+  interviewed_by(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type CandidatesConnection {
+  values: [Candidates]
+  groupBy: CandidatesGroupBy
+  aggregate: CandidatesAggregator
+}
+
+type CandidatesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CandidatesGroupBy {
+  id: [CandidatesConnectionId]
+  created_at: [CandidatesConnectionCreated_at]
+  updated_at: [CandidatesConnectionUpdated_at]
+  firstname: [CandidatesConnectionFirstname]
+  lastname: [CandidatesConnectionLastname]
+  emailaddress: [CandidatesConnectionEmailaddress]
+  telephone: [CandidatesConnectionTelephone]
+  found_by: [CandidatesConnectionFound_by]
+  interview_date: [CandidatesConnectionInterview_date]
+  level: [CandidatesConnectionLevel]
+  loi_status: [CandidatesConnectionLoi_status]
+  notes: [CandidatesConnectionNotes]
+  loi_sent_date: [CandidatesConnectionLoi_sent_date]
+  status: [CandidatesConnectionStatus]
+  skill: [CandidatesConnectionSkill]
+  salary: [CandidatesConnectionSalary]
+  resume_text: [CandidatesConnectionResume_text]
+  prefered_location: [CandidatesConnectionPrefered_location]
+  archived: [CandidatesConnectionArchived]
+  current_contract: [CandidatesConnectionCurrent_contract]
+  current_company: [CandidatesConnectionCurrent_company]
+  authored_by: [CandidatesConnectionAuthored_by]
+  modified_by: [CandidatesConnectionModified_by]
+  loi_sent_by: [CandidatesConnectionLoi_sent_by]
+}
+
+type CandidatesConnectionId {
+  key: ID
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionCreated_at {
+  key: DateTime
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionUpdated_at {
+  key: DateTime
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionFirstname {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionLastname {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionEmailaddress {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionTelephone {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionFound_by {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionInterview_date {
+  key: DateTime
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionLevel {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionLoi_status {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionNotes {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionLoi_sent_date {
+  key: DateTime
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionStatus {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionSkill {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionSalary {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionResume_text {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionPrefered_location {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionArchived {
+  key: Boolean
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionCurrent_contract {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionCurrent_company {
+  key: String
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionAuthored_by {
+  key: ID
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionModified_by {
+  key: ID
+  connection: CandidatesConnection
+}
+
+type CandidatesConnectionLoi_sent_by {
+  key: ID
+  connection: CandidatesConnection
+}
+
+input CandidateInput {
+  firstname: String
+  lastname: String
+  emailaddress: String
+  telephone: String
+  found_by: String
+  interview_date: DateTime
+  level: String
+  loi_status: ENUM_CANDIDATES_LOI_STATUS
+  notes: String
+  loi_sent_date: DateTime
+  status: ENUM_CANDIDATES_STATUS
+  skill: String
+  salary: String
+  resume_text: String
+  prefered_location: String
+  comments: [ID]
+  potential_contracts: [ID]
+  submissions: [ID]
+  flags: [ID]
+  archived: Boolean
+  current_contract: String
+  current_company: String
+  authored_by: ID
+  modified_by: ID
+  interviewed_by: [ID]
+  loi_sent_by: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editCandidateInput {
+  firstname: String
+  lastname: String
+  emailaddress: String
+  telephone: String
+  found_by: String
+  interview_date: DateTime
+  level: String
+  loi_status: ENUM_CANDIDATES_LOI_STATUS
+  notes: String
+  loi_sent_date: DateTime
+  status: ENUM_CANDIDATES_STATUS
+  skill: String
+  salary: String
+  resume_text: String
+  prefered_location: String
+  comments: [ID]
+  potential_contracts: [ID]
+  submissions: [ID]
+  flags: [ID]
+  archived: Boolean
+  current_contract: String
+  current_company: String
+  authored_by: ID
+  modified_by: ID
+  interviewed_by: [ID]
+  loi_sent_by: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createCandidateInput {
+  data: CandidateInput
+}
+
+type createCandidatePayload {
+  candidate: Candidates
+}
+
+input updateCandidateInput {
+  where: InputID
+  data: editCandidateInput
+}
+
+type updateCandidatePayload {
+  candidate: Candidates
+}
+
+input deleteCandidateInput {
+  where: InputID
+}
+
+type deleteCandidatePayload {
+  candidate: Candidates
+}
+
+type Comments {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  text: String
+  candidate: Candidates
+  author: UsersPermissionsUser
+}
+
+type CommentsConnection {
+  values: [Comments]
+  groupBy: CommentsGroupBy
+  aggregate: CommentsAggregator
+}
+
+type CommentsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CommentsGroupBy {
+  id: [CommentsConnectionId]
+  created_at: [CommentsConnectionCreated_at]
+  updated_at: [CommentsConnectionUpdated_at]
+  text: [CommentsConnectionText]
+  candidate: [CommentsConnectionCandidate]
+  author: [CommentsConnectionAuthor]
+}
+
+type CommentsConnectionId {
+  key: ID
+  connection: CommentsConnection
+}
+
+type CommentsConnectionCreated_at {
+  key: DateTime
+  connection: CommentsConnection
+}
+
+type CommentsConnectionUpdated_at {
+  key: DateTime
+  connection: CommentsConnection
+}
+
+type CommentsConnectionText {
+  key: String
+  connection: CommentsConnection
+}
+
+type CommentsConnectionCandidate {
+  key: ID
+  connection: CommentsConnection
+}
+
+type CommentsConnectionAuthor {
+  key: ID
+  connection: CommentsConnection
+}
+
+input CommentInput {
+  text: String
+  candidate: ID
+  author: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editCommentInput {
+  text: String
+  candidate: ID
+  author: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createCommentInput {
+  data: CommentInput
+}
+
+type createCommentPayload {
+  comment: Comments
+}
+
+input updateCommentInput {
+  where: InputID
+  data: editCommentInput
+}
+
+type updateCommentPayload {
+  comment: Comments
+}
+
+input deleteCommentInput {
+  where: InputID
+}
+
+type deleteCommentPayload {
+  comment: Comments
+}
+
+type Contracts {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  number: String
+  name: String
+  pop: String
+  potential_candidate: Candidates
+  manager: UsersPermissionsUser
+  positions(sort: String, limit: Int, start: Int, where: JSON): [Positions]
+  employees(sort: String, limit: Int, start: Int, where: JSON): [Employees]
+}
+
+type ContractsConnection {
+  values: [Contracts]
+  groupBy: ContractsGroupBy
+  aggregate: ContractsAggregator
+}
+
+type ContractsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ContractsGroupBy {
+  id: [ContractsConnectionId]
+  created_at: [ContractsConnectionCreated_at]
+  updated_at: [ContractsConnectionUpdated_at]
+  number: [ContractsConnectionNumber]
+  name: [ContractsConnectionName]
+  pop: [ContractsConnectionPop]
+  potential_candidate: [ContractsConnectionPotential_candidate]
+  manager: [ContractsConnectionManager]
+}
+
+type ContractsConnectionId {
+  key: ID
+  connection: ContractsConnection
+}
+
+type ContractsConnectionCreated_at {
+  key: DateTime
+  connection: ContractsConnection
+}
+
+type ContractsConnectionUpdated_at {
+  key: DateTime
+  connection: ContractsConnection
+}
+
+type ContractsConnectionNumber {
+  key: String
+  connection: ContractsConnection
+}
+
+type ContractsConnectionName {
+  key: String
+  connection: ContractsConnection
+}
+
+type ContractsConnectionPop {
+  key: String
+  connection: ContractsConnection
+}
+
+type ContractsConnectionPotential_candidate {
+  key: ID
+  connection: ContractsConnection
+}
+
+type ContractsConnectionManager {
+  key: ID
+  connection: ContractsConnection
+}
+
+input ContractInput {
+  number: String
+  name: String
+  pop: String
+  potential_candidate: ID
+  manager: ID
+  positions: [ID]
+  employees: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editContractInput {
+  number: String
+  name: String
+  pop: String
+  potential_candidate: ID
+  manager: ID
+  positions: [ID]
+  employees: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createContractInput {
+  data: ContractInput
+}
+
+type createContractPayload {
+  contract: Contracts
+}
+
+input updateContractInput {
+  where: InputID
+  data: editContractInput
+}
+
+type updateContractPayload {
+  contract: Contracts
+}
+
+input deleteContractInput {
+  where: InputID
+}
+
+type deleteContractPayload {
+  contract: Contracts
+}
+
+type Employees {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  firstname: String!
+  lastname: String!
+  emailaddress: String
+  telephone: String
+  found_by: String
+  level: String
+  salary: String
+  resume_text: String
+  hired_on: DateTime
+  birthday: DateTime
+  at_risk: Boolean
+  currentcontract: Contracts
+  notes: String
+  title: String
+}
+
+type EmployeesConnection {
+  values: [Employees]
+  groupBy: EmployeesGroupBy
+  aggregate: EmployeesAggregator
+}
+
+type EmployeesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type EmployeesGroupBy {
+  id: [EmployeesConnectionId]
+  created_at: [EmployeesConnectionCreated_at]
+  updated_at: [EmployeesConnectionUpdated_at]
+  firstname: [EmployeesConnectionFirstname]
+  lastname: [EmployeesConnectionLastname]
+  emailaddress: [EmployeesConnectionEmailaddress]
+  telephone: [EmployeesConnectionTelephone]
+  found_by: [EmployeesConnectionFound_by]
+  level: [EmployeesConnectionLevel]
+  salary: [EmployeesConnectionSalary]
+  resume_text: [EmployeesConnectionResume_text]
+  hired_on: [EmployeesConnectionHired_on]
+  birthday: [EmployeesConnectionBirthday]
+  at_risk: [EmployeesConnectionAt_risk]
+  currentcontract: [EmployeesConnectionCurrentcontract]
+  notes: [EmployeesConnectionNotes]
+  title: [EmployeesConnectionTitle]
+}
+
+type EmployeesConnectionId {
+  key: ID
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionCreated_at {
+  key: DateTime
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionUpdated_at {
+  key: DateTime
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionFirstname {
+  key: String
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionLastname {
+  key: String
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionEmailaddress {
+  key: String
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionTelephone {
+  key: String
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionFound_by {
+  key: String
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionLevel {
+  key: String
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionSalary {
+  key: String
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionResume_text {
+  key: String
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionHired_on {
+  key: DateTime
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionBirthday {
+  key: DateTime
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionAt_risk {
+  key: Boolean
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionCurrentcontract {
+  key: ID
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionNotes {
+  key: String
+  connection: EmployeesConnection
+}
+
+type EmployeesConnectionTitle {
+  key: String
+  connection: EmployeesConnection
+}
+
+input EmployeeInput {
+  firstname: String!
+  lastname: String!
+  emailaddress: String
+  telephone: String
+  found_by: String
+  level: String
+  salary: String
+  resume_text: String
+  hired_on: DateTime
+  birthday: DateTime
+  at_risk: Boolean
+  currentcontract: ID
+  notes: String
+  title: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editEmployeeInput {
+  firstname: String
+  lastname: String
+  emailaddress: String
+  telephone: String
+  found_by: String
+  level: String
+  salary: String
+  resume_text: String
+  hired_on: DateTime
+  birthday: DateTime
+  at_risk: Boolean
+  currentcontract: ID
+  notes: String
+  title: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createEmployeeInput {
+  data: EmployeeInput
+}
+
+type createEmployeePayload {
+  employee: Employees
+}
+
+input updateEmployeeInput {
+  where: InputID
+  data: editEmployeeInput
+}
+
+type updateEmployeePayload {
+  employee: Employees
+}
+
+input deleteEmployeeInput {
+  where: InputID
+}
+
+type deleteEmployeePayload {
+  employee: Employees
+}
+
+type Flags {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  candidate: Candidates
+  flag_note: String
+  active: Boolean
+  flagged_by: UsersPermissionsUser
+  actioned_to(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type FlagsConnection {
+  values: [Flags]
+  groupBy: FlagsGroupBy
+  aggregate: FlagsAggregator
+}
+
+type FlagsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type FlagsGroupBy {
+  id: [FlagsConnectionId]
+  created_at: [FlagsConnectionCreated_at]
+  updated_at: [FlagsConnectionUpdated_at]
+  candidate: [FlagsConnectionCandidate]
+  flag_note: [FlagsConnectionFlag_note]
+  active: [FlagsConnectionActive]
+  flagged_by: [FlagsConnectionFlagged_by]
+}
+
+type FlagsConnectionId {
+  key: ID
+  connection: FlagsConnection
+}
+
+type FlagsConnectionCreated_at {
+  key: DateTime
+  connection: FlagsConnection
+}
+
+type FlagsConnectionUpdated_at {
+  key: DateTime
+  connection: FlagsConnection
+}
+
+type FlagsConnectionCandidate {
+  key: ID
+  connection: FlagsConnection
+}
+
+type FlagsConnectionFlag_note {
+  key: String
+  connection: FlagsConnection
+}
+
+type FlagsConnectionActive {
+  key: Boolean
+  connection: FlagsConnection
+}
+
+type FlagsConnectionFlagged_by {
+  key: ID
+  connection: FlagsConnection
+}
+
+input FlagInput {
+  candidate: ID
+  flag_note: String
+  active: Boolean
+  flagged_by: ID
+  actioned_to: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFlagInput {
+  candidate: ID
+  flag_note: String
+  active: Boolean
+  flagged_by: ID
+  actioned_to: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createFlagInput {
+  data: FlagInput
+}
+
+type createFlagPayload {
+  flag: Flags
+}
+
+input updateFlagInput {
+  where: InputID
+  data: editFlagInput
+}
+
+type updateFlagPayload {
+  flag: Flags
+}
+
+input deleteFlagInput {
+  where: InputID
+}
+
+type deleteFlagPayload {
+  flag: Flags
+}
+
+type Positions {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String
+  description: String
+  level: String
+  location: String
+  skill_summary: String
+  position_id: String
+  contract: Contracts
+  published_at: DateTime
+  submissions(sort: String, limit: Int, start: Int, where: JSON): [Submissions]
+}
+
+type PositionsConnection {
+  values: [Positions]
+  groupBy: PositionsGroupBy
+  aggregate: PositionsAggregator
+}
+
+type PositionsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PositionsGroupBy {
+  id: [PositionsConnectionId]
+  created_at: [PositionsConnectionCreated_at]
+  updated_at: [PositionsConnectionUpdated_at]
+  title: [PositionsConnectionTitle]
+  description: [PositionsConnectionDescription]
+  level: [PositionsConnectionLevel]
+  location: [PositionsConnectionLocation]
+  skill_summary: [PositionsConnectionSkill_summary]
+  position_id: [PositionsConnectionPosition_id]
+  contract: [PositionsConnectionContract]
+  published_at: [PositionsConnectionPublished_at]
+}
+
+type PositionsConnectionId {
+  key: ID
+  connection: PositionsConnection
+}
+
+type PositionsConnectionCreated_at {
+  key: DateTime
+  connection: PositionsConnection
+}
+
+type PositionsConnectionUpdated_at {
+  key: DateTime
+  connection: PositionsConnection
+}
+
+type PositionsConnectionTitle {
+  key: String
+  connection: PositionsConnection
+}
+
+type PositionsConnectionDescription {
+  key: String
+  connection: PositionsConnection
+}
+
+type PositionsConnectionLevel {
+  key: String
+  connection: PositionsConnection
+}
+
+type PositionsConnectionLocation {
+  key: String
+  connection: PositionsConnection
+}
+
+type PositionsConnectionSkill_summary {
+  key: String
+  connection: PositionsConnection
+}
+
+type PositionsConnectionPosition_id {
+  key: String
+  connection: PositionsConnection
+}
+
+type PositionsConnectionContract {
+  key: ID
+  connection: PositionsConnection
+}
+
+type PositionsConnectionPublished_at {
+  key: DateTime
+  connection: PositionsConnection
+}
+
+input PositionInput {
+  title: String
+  description: String
+  level: String
+  location: String
+  skill_summary: String
+  position_id: String
+  contract: ID
+  submissions: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editPositionInput {
+  title: String
+  description: String
+  level: String
+  location: String
+  skill_summary: String
+  position_id: String
+  contract: ID
+  submissions: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createPositionInput {
+  data: PositionInput
+}
+
+type createPositionPayload {
+  position: Positions
+}
+
+input updatePositionInput {
+  where: InputID
+  data: editPositionInput
+}
+
+type updatePositionPayload {
+  position: Positions
+}
+
+input deletePositionInput {
+  where: InputID
+}
+
+type deletePositionPayload {
+  position: Positions
+}
+
+type Submissions {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  position: Positions
+  submitted_by: UsersPermissionsUser
+  candidate: Candidates
+}
+
+type SubmissionsConnection {
+  values: [Submissions]
+  groupBy: SubmissionsGroupBy
+  aggregate: SubmissionsAggregator
+}
+
+type SubmissionsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type SubmissionsGroupBy {
+  id: [SubmissionsConnectionId]
+  created_at: [SubmissionsConnectionCreated_at]
+  updated_at: [SubmissionsConnectionUpdated_at]
+  position: [SubmissionsConnectionPosition]
+  submitted_by: [SubmissionsConnectionSubmitted_by]
+  candidate: [SubmissionsConnectionCandidate]
+}
+
+type SubmissionsConnectionId {
+  key: ID
+  connection: SubmissionsConnection
+}
+
+type SubmissionsConnectionCreated_at {
+  key: DateTime
+  connection: SubmissionsConnection
+}
+
+type SubmissionsConnectionUpdated_at {
+  key: DateTime
+  connection: SubmissionsConnection
+}
+
+type SubmissionsConnectionPosition {
+  key: ID
+  connection: SubmissionsConnection
+}
+
+type SubmissionsConnectionSubmitted_by {
+  key: ID
+  connection: SubmissionsConnection
+}
+
+type SubmissionsConnectionCandidate {
+  key: ID
+  connection: SubmissionsConnection
+}
+
+input SubmissionInput {
+  position: ID
+  submitted_by: ID
+  candidate: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editSubmissionInput {
+  position: ID
+  submitted_by: ID
+  candidate: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createSubmissionInput {
+  data: SubmissionInput
+}
+
+type createSubmissionPayload {
+  submission: Submissions
+}
+
+input updateSubmissionInput {
+  where: InputID
+  data: editSubmissionInput
+}
+
+type updateSubmissionPayload {
+  submission: Submissions
+}
+
+input deleteSubmissionInput {
+  where: InputID
+}
+
+type deleteSubmissionPayload {
+  submission: Submissions
+}
+
+type I18NLocale {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  code: String
+}
+
+input LocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editLocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  avatar: UploadFile
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comments]
+  added_flags(sort: String, limit: Int, start: Int, where: JSON): [Flags]
+  candidate_created(sort: String, limit: Int, start: Int, where: JSON): [Candidates]
+  candidate_modified(sort: String, limit: Int, start: Int, where: JSON): [Candidates]
+  flag_actions(sort: String, limit: Int, start: Int, where: JSON): [Flags]
+  contracts(sort: String, limit: Int, start: Int, where: JSON): [Contracts]
+  candidates_interviewed(sort: String, limit: Int, start: Int, where: JSON): [Candidates]
+  loi_sent_to(sort: String, limit: Int, start: Int, where: JSON): [Candidates]
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+  avatar: [UsersPermissionsUserConnectionAvatar]
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionAvatar {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  comments: [ID]
+  avatar: ID
+  added_flags: [ID]
+  candidate_created: [ID]
+  candidate_modified: [ID]
+  flag_actions: [ID]
+  contracts: [ID]
+  candidates_interviewed: [ID]
+  loi_sent_to: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  comments: [ID]
+  avatar: ID
+  added_flags: [ID]
+  candidate_created: [ID]
+  candidate_modified: [ID]
+  flag_actions: [ID]
+  contracts: [ID]
+  candidates_interviewed: [ID]
+  loi_sent_to: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Candidates | CandidatesConnection | CandidatesAggregator | CandidatesGroupBy | CandidatesConnectionId | CandidatesConnectionCreated_at | CandidatesConnectionUpdated_at | CandidatesConnectionFirstname | CandidatesConnectionLastname | CandidatesConnectionEmailaddress | CandidatesConnectionTelephone | CandidatesConnectionFound_by | CandidatesConnectionInterview_date | CandidatesConnectionLevel | CandidatesConnectionLoi_status | CandidatesConnectionNotes | CandidatesConnectionLoi_sent_date | CandidatesConnectionStatus | CandidatesConnectionSkill | CandidatesConnectionSalary | CandidatesConnectionResume_text | CandidatesConnectionPrefered_location | CandidatesConnectionArchived | CandidatesConnectionCurrent_contract | CandidatesConnectionCurrent_company | CandidatesConnectionAuthored_by | CandidatesConnectionModified_by | CandidatesConnectionLoi_sent_by | createCandidatePayload | updateCandidatePayload | deleteCandidatePayload | Comments | CommentsConnection | CommentsAggregator | CommentsGroupBy | CommentsConnectionId | CommentsConnectionCreated_at | CommentsConnectionUpdated_at | CommentsConnectionText | CommentsConnectionCandidate | CommentsConnectionAuthor | createCommentPayload | updateCommentPayload | deleteCommentPayload | Contracts | ContractsConnection | ContractsAggregator | ContractsGroupBy | ContractsConnectionId | ContractsConnectionCreated_at | ContractsConnectionUpdated_at | ContractsConnectionNumber | ContractsConnectionName | ContractsConnectionPop | ContractsConnectionPotential_candidate | ContractsConnectionManager | createContractPayload | updateContractPayload | deleteContractPayload | Employees | EmployeesConnection | EmployeesAggregator | EmployeesGroupBy | EmployeesConnectionId | EmployeesConnectionCreated_at | EmployeesConnectionUpdated_at | EmployeesConnectionFirstname | EmployeesConnectionLastname | EmployeesConnectionEmailaddress | EmployeesConnectionTelephone | EmployeesConnectionFound_by | EmployeesConnectionLevel | EmployeesConnectionSalary | EmployeesConnectionResume_text | EmployeesConnectionHired_on | EmployeesConnectionBirthday | EmployeesConnectionAt_risk | EmployeesConnectionCurrentcontract | EmployeesConnectionNotes | EmployeesConnectionTitle | createEmployeePayload | updateEmployeePayload | deleteEmployeePayload | Flags | FlagsConnection | FlagsAggregator | FlagsGroupBy | FlagsConnectionId | FlagsConnectionCreated_at | FlagsConnectionUpdated_at | FlagsConnectionCandidate | FlagsConnectionFlag_note | FlagsConnectionActive | FlagsConnectionFlagged_by | createFlagPayload | updateFlagPayload | deleteFlagPayload | Positions | PositionsConnection | PositionsAggregator | PositionsGroupBy | PositionsConnectionId | PositionsConnectionCreated_at | PositionsConnectionUpdated_at | PositionsConnectionTitle | PositionsConnectionDescription | PositionsConnectionLevel | PositionsConnectionLocation | PositionsConnectionSkill_summary | PositionsConnectionPosition_id | PositionsConnectionContract | PositionsConnectionPublished_at | createPositionPayload | updatePositionPayload | deletePositionPayload | Submissions | SubmissionsConnection | SubmissionsAggregator | SubmissionsGroupBy | SubmissionsConnectionId | SubmissionsConnectionCreated_at | SubmissionsConnectionUpdated_at | SubmissionsConnectionPosition | SubmissionsConnectionSubmitted_by | SubmissionsConnectionCandidate | createSubmissionPayload | updateSubmissionPayload | deleteSubmissionPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionAvatar | createUserPayload | updateUserPayload | deleteUserPayload
+
+input InputID {
+  id: ID!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+type Query {
+  candidate(id: ID!, publicationState: PublicationState): Candidates
+  candidates(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Candidates]
+  candidatesConnection(sort: String, limit: Int, start: Int, where: JSON): CandidatesConnection
+  comment(id: ID!, publicationState: PublicationState): Comments
+  comments(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Comments]
+  commentsConnection(sort: String, limit: Int, start: Int, where: JSON): CommentsConnection
+  contract(id: ID!, publicationState: PublicationState): Contracts
+  contracts(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Contracts]
+  contractsConnection(sort: String, limit: Int, start: Int, where: JSON): ContractsConnection
+  employee(id: ID!, publicationState: PublicationState): Employees
+  employees(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Employees]
+  employeesConnection(sort: String, limit: Int, start: Int, where: JSON): EmployeesConnection
+  flag(id: ID!, publicationState: PublicationState): Flags
+  flags(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Flags]
+  flagsConnection(sort: String, limit: Int, start: Int, where: JSON): FlagsConnection
+  position(id: ID!, publicationState: PublicationState): Positions
+  positions(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Positions]
+  positionsConnection(sort: String, limit: Int, start: Int, where: JSON): PositionsConnection
+  submission(id: ID!, publicationState: PublicationState): Submissions
+  submissions(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Submissions]
+  submissionsConnection(sort: String, limit: Int, start: Int, where: JSON): SubmissionsConnection
+  files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  createCandidate(input: createCandidateInput): createCandidatePayload
+  updateCandidate(input: updateCandidateInput): updateCandidatePayload
+  deleteCandidate(input: deleteCandidateInput): deleteCandidatePayload
+  createComment(input: createCommentInput): createCommentPayload
+  updateComment(input: updateCommentInput): updateCommentPayload
+  deleteComment(input: deleteCommentInput): deleteCommentPayload
+  createContract(input: createContractInput): createContractPayload
+  updateContract(input: updateContractInput): updateContractPayload
+  deleteContract(input: deleteContractInput): deleteContractPayload
+  createEmployee(input: createEmployeeInput): createEmployeePayload
+  updateEmployee(input: updateEmployeeInput): updateEmployeePayload
+  deleteEmployee(input: deleteEmployeeInput): deleteEmployeePayload
+  createFlag(input: createFlagInput): createFlagPayload
+  updateFlag(input: updateFlagInput): updateFlagPayload
+  deleteFlag(input: deleteFlagInput): deleteFlagPayload
+  createPosition(input: createPositionInput): createPositionPayload
+  updatePosition(input: updatePositionInput): updatePositionPayload
+  deletePosition(input: deletePositionInput): deletePositionPayload
+  createSubmission(input: createSubmissionInput): createSubmissionPayload
+  updateSubmission(input: updateSubmissionInput): updateSubmissionPayload
+  deleteSubmission(input: deleteSubmissionInput): deleteSubmissionPayload
+
+  """Delete one file"""
+  deleteFile(input: deleteFileInput): deleteFilePayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""A time string with format: HH:mm:ss.SSS"""
+scalar Time
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
