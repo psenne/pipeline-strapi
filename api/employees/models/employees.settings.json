@@ -48,9 +48,9 @@
       "type": "boolean",
       "default": false
     },
-    "currentcontract": {
-      "via": "employees",
-      "model": "contracts"
+    "contract": {
+      "model": "contracts",
+      "via": "employees"
     },
     "notes": {
       "type": "richtext"

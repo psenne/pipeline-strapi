@@ -35,7 +35,7 @@
       "collection": "positions"
     },
     "employees": {
-      "via": "currentcontract",
+      "via": "contract",
       "collection": "employees"
     }
   }
