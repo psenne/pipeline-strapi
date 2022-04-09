@@ -8,7 +8,11 @@ module.exports = {
     },
     cors: {
       enabled: true,
-      origin: ["http://localhost:3000", "http://localhost:1337"],
+      origin: [
+        "http://localhost:3000",
+        "http://localhost:1337",
+        "https://studio.apollographql.com",
+      ],
     },
   },
 };

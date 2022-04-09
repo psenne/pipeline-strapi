@@ -98,25 +98,25 @@
       "type": "string"
     },
     "authored_by": {
+      "via": "candidate_created",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "candidate_created"
+      "model": "user"
     },
     "modified_by": {
+      "via": "candidate_modified",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "candidate_modified"
+      "model": "user"
     },
     "interviewed_by": {
+      "via": "candidates_interviewed",
       "plugin": "users-permissions",
       "collection": "user",
-      "via": "candidates_interviewed",
       "dominant": true
     },
     "loi_sent_by": {
+      "via": "loi_sent_to",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "loi_sent_to"
+      "model": "user"
     }
   }
 }

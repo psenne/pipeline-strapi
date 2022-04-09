@@ -26,9 +26,9 @@
       "model": "candidates"
     },
     "manager": {
+      "via": "contracts",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "contracts"
+      "model": "user"
     },
     "positions": {
       "via": "contract",

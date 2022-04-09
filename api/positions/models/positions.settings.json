@@ -37,6 +37,16 @@
     "submissions": {
       "via": "position",
       "collection": "submissions"
+    },
+    "authored_by": {
+      "via": "position_created",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "modified_by": {
+      "via": "position_modified",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }

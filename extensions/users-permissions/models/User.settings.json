@@ -100,6 +100,25 @@
     "loi_sent_to": {
       "via": "loi_sent_by",
       "collection": "candidates"
+    },
+    "employee_modified": {
+      "via": "modified_by",
+      "collection": "employees"
+    },
+    "position_created": {
+      "via": "authored_by",
+      "collection": "positions"
+    },
+    "position_modified": {
+      "via": "modified_by",
+      "collection": "positions"
+    },
+    "employee_created": {
+      "via": "authored_by",
+      "collection": "employees"
+    },
+    "fullname": {
+      "type": "string"
     }
   }
 }

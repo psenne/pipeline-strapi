@@ -24,14 +24,13 @@
       "default": false
     },
     "flagged_by": {
+      "via": "added_flags",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "added_flags"
+      "model": "user"
     },
     "actioned_to": {
-      "plugin": "users-permissions",
-      "model": "user",
       "via": "flag_actions",
+      "plugin": "users-permissions",
       "collection": "user",
       "dominant": true
     }

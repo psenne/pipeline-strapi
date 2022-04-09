@@ -57,6 +57,16 @@
     },
     "title": {
       "type": "string"
+    },
+    "authored_by": {
+      "via": "employee_created",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "modified_by": {
+      "via": "employee_modified",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }
