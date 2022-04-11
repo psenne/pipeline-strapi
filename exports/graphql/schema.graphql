@@ -79,7 +79,6 @@ type Candidates {
   current_company: String
   authored_by: UsersPermissionsUser
   modified_by: UsersPermissionsUser
-  loi_sent_by: UsersPermissionsUser
   comments(sort: String, limit: Int, start: Int, where: JSON): [Comments]
   potential_contracts(sort: String, limit: Int, start: Int, where: JSON): [Contracts]
   submissions(sort: String, limit: Int, start: Int, where: JSON): [Submissions]
@@ -122,7 +121,6 @@ type CandidatesGroupBy {
   current_company: [CandidatesConnectionCurrent_company]
   authored_by: [CandidatesConnectionAuthored_by]
   modified_by: [CandidatesConnectionModified_by]
-  loi_sent_by: [CandidatesConnectionLoi_sent_by]
 }
 
 type CandidatesConnectionId {
@@ -240,11 +238,6 @@ type CandidatesConnectionModified_by {
   connection: CandidatesConnection
 }
 
-type CandidatesConnectionLoi_sent_by {
-  key: ID
-  connection: CandidatesConnection
-}
-
 input CandidateInput {
   firstname: String
   lastname: String
@@ -271,7 +264,6 @@ input CandidateInput {
   authored_by: ID
   modified_by: ID
   interviewed_by: [ID]
-  loi_sent_by: ID
   created_by: ID
   updated_by: ID
 }
@@ -302,7 +294,6 @@ input editCandidateInput {
   authored_by: ID
   modified_by: ID
   interviewed_by: [ID]
-  loi_sent_by: ID
   created_by: ID
   updated_by: ID
 }
@@ -1507,7 +1498,6 @@ type UsersPermissionsUser {
   flag_actions(sort: String, limit: Int, start: Int, where: JSON): [Flags]
   contracts(sort: String, limit: Int, start: Int, where: JSON): [Contracts]
   candidates_interviewed(sort: String, limit: Int, start: Int, where: JSON): [Candidates]
-  loi_sent_to(sort: String, limit: Int, start: Int, where: JSON): [Candidates]
   employee_modified(sort: String, limit: Int, start: Int, where: JSON): [Employees]
   position_created(sort: String, limit: Int, start: Int, where: JSON): [Positions]
   position_modified(sort: String, limit: Int, start: Int, where: JSON): [Positions]
@@ -1612,7 +1602,6 @@ input UserInput {
   flag_actions: [ID]
   contracts: [ID]
   candidates_interviewed: [ID]
-  loi_sent_to: [ID]
   employee_modified: [ID]
   position_created: [ID]
   position_modified: [ID]
@@ -1640,7 +1629,6 @@ input editUserInput {
   flag_actions: [ID]
   contracts: [ID]
   candidates_interviewed: [ID]
-  loi_sent_to: [ID]
   employee_modified: [ID]
   position_created: [ID]
   position_modified: [ID]
@@ -1675,7 +1663,7 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Candidates | CandidatesConnection | CandidatesAggregator | CandidatesGroupBy | CandidatesConnectionId | CandidatesConnectionCreated_at | CandidatesConnectionUpdated_at | CandidatesConnectionFirstname | CandidatesConnectionLastname | CandidatesConnectionEmailaddress | CandidatesConnectionTelephone | CandidatesConnectionFound_by | CandidatesConnectionInterview_date | CandidatesConnectionLevel | CandidatesConnectionLoi_status | CandidatesConnectionNotes | CandidatesConnectionLoi_sent_date | CandidatesConnectionStatus | CandidatesConnectionSkill | CandidatesConnectionSalary | CandidatesConnectionResume_text | CandidatesConnectionPrefered_location | CandidatesConnectionArchived | CandidatesConnectionCurrent_contract | CandidatesConnectionCurrent_company | CandidatesConnectionAuthored_by | CandidatesConnectionModified_by | CandidatesConnectionLoi_sent_by | createCandidatePayload | updateCandidatePayload | deleteCandidatePayload | Comments | CommentsConnection | CommentsAggregator | CommentsGroupBy | CommentsConnectionId | CommentsConnectionCreated_at | CommentsConnectionUpdated_at | CommentsConnectionText | CommentsConnectionCandidate | CommentsConnectionAuthor | createCommentPayload | updateCommentPayload | deleteCommentPayload | Contracts | ContractsConnection | ContractsAggregator | ContractsGroupBy | ContractsConnectionId | ContractsConnectionCreated_at | ContractsConnectionUpdated_at | ContractsConnectionNumber | ContractsConnectionName | ContractsConnectionPop | ContractsConnectionPotential_candidate | ContractsConnectionManager | createContractPayload | updateContractPayload | deleteContractPayload | Employees | EmployeesConnection | EmployeesAggregator | EmployeesGroupBy | EmployeesConnectionId | EmployeesConnectionCreated_at | EmployeesConnectionUpdated_at | EmployeesConnectionFirstname | EmployeesConnectionLastname | EmployeesConnectionEmailaddress | EmployeesConnectionTelephone | EmployeesConnectionFound_by | EmployeesConnectionLevel | EmployeesConnectionSalary | EmployeesConnectionResume_text | EmployeesConnectionHired_on | EmployeesConnectionBirthday | EmployeesConnectionAt_risk | EmployeesConnectionContract | EmployeesConnectionNotes | EmployeesConnectionTitle | EmployeesConnectionAuthored_by | EmployeesConnectionModified_by | createEmployeePayload | updateEmployeePayload | deleteEmployeePayload | Flags | FlagsConnection | FlagsAggregator | FlagsGroupBy | FlagsConnectionId | FlagsConnectionCreated_at | FlagsConnectionUpdated_at | FlagsConnectionCandidate | FlagsConnectionFlag_note | FlagsConnectionActive | FlagsConnectionFlagged_by | createFlagPayload | updateFlagPayload | deleteFlagPayload | Positions | PositionsConnection | PositionsAggregator | PositionsGroupBy | PositionsConnectionId | PositionsConnectionCreated_at | PositionsConnectionUpdated_at | PositionsConnectionTitle | PositionsConnectionDescription | PositionsConnectionLevel | PositionsConnectionLocation | PositionsConnectionSkill_summary | PositionsConnectionPosition_id | PositionsConnectionContract | PositionsConnectionAuthored_by | PositionsConnectionModified_by | PositionsConnectionPublished_at | createPositionPayload | updatePositionPayload | deletePositionPayload | Submissions | SubmissionsConnection | SubmissionsAggregator | SubmissionsGroupBy | SubmissionsConnectionId | SubmissionsConnectionCreated_at | SubmissionsConnectionUpdated_at | SubmissionsConnectionPosition | SubmissionsConnectionSubmitted_by | SubmissionsConnectionCandidate | createSubmissionPayload | updateSubmissionPayload | deleteSubmissionPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionAvatar | UsersPermissionsUserConnectionFullname | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Candidates | CandidatesConnection | CandidatesAggregator | CandidatesGroupBy | CandidatesConnectionId | CandidatesConnectionCreated_at | CandidatesConnectionUpdated_at | CandidatesConnectionFirstname | CandidatesConnectionLastname | CandidatesConnectionEmailaddress | CandidatesConnectionTelephone | CandidatesConnectionFound_by | CandidatesConnectionInterview_date | CandidatesConnectionLevel | CandidatesConnectionLoi_status | CandidatesConnectionNotes | CandidatesConnectionLoi_sent_date | CandidatesConnectionStatus | CandidatesConnectionSkill | CandidatesConnectionSalary | CandidatesConnectionResume_text | CandidatesConnectionPrefered_location | CandidatesConnectionArchived | CandidatesConnectionCurrent_contract | CandidatesConnectionCurrent_company | CandidatesConnectionAuthored_by | CandidatesConnectionModified_by | createCandidatePayload | updateCandidatePayload | deleteCandidatePayload | Comments | CommentsConnection | CommentsAggregator | CommentsGroupBy | CommentsConnectionId | CommentsConnectionCreated_at | CommentsConnectionUpdated_at | CommentsConnectionText | CommentsConnectionCandidate | CommentsConnectionAuthor | createCommentPayload | updateCommentPayload | deleteCommentPayload | Contracts | ContractsConnection | ContractsAggregator | ContractsGroupBy | ContractsConnectionId | ContractsConnectionCreated_at | ContractsConnectionUpdated_at | ContractsConnectionNumber | ContractsConnectionName | ContractsConnectionPop | ContractsConnectionPotential_candidate | ContractsConnectionManager | createContractPayload | updateContractPayload | deleteContractPayload | Employees | EmployeesConnection | EmployeesAggregator | EmployeesGroupBy | EmployeesConnectionId | EmployeesConnectionCreated_at | EmployeesConnectionUpdated_at | EmployeesConnectionFirstname | EmployeesConnectionLastname | EmployeesConnectionEmailaddress | EmployeesConnectionTelephone | EmployeesConnectionFound_by | EmployeesConnectionLevel | EmployeesConnectionSalary | EmployeesConnectionResume_text | EmployeesConnectionHired_on | EmployeesConnectionBirthday | EmployeesConnectionAt_risk | EmployeesConnectionContract | EmployeesConnectionNotes | EmployeesConnectionTitle | EmployeesConnectionAuthored_by | EmployeesConnectionModified_by | createEmployeePayload | updateEmployeePayload | deleteEmployeePayload | Flags | FlagsConnection | FlagsAggregator | FlagsGroupBy | FlagsConnectionId | FlagsConnectionCreated_at | FlagsConnectionUpdated_at | FlagsConnectionCandidate | FlagsConnectionFlag_note | FlagsConnectionActive | FlagsConnectionFlagged_by | createFlagPayload | updateFlagPayload | deleteFlagPayload | Positions | PositionsConnection | PositionsAggregator | PositionsGroupBy | PositionsConnectionId | PositionsConnectionCreated_at | PositionsConnectionUpdated_at | PositionsConnectionTitle | PositionsConnectionDescription | PositionsConnectionLevel | PositionsConnectionLocation | PositionsConnectionSkill_summary | PositionsConnectionPosition_id | PositionsConnectionContract | PositionsConnectionAuthored_by | PositionsConnectionModified_by | PositionsConnectionPublished_at | createPositionPayload | updatePositionPayload | deletePositionPayload | Submissions | SubmissionsConnection | SubmissionsAggregator | SubmissionsGroupBy | SubmissionsConnectionId | SubmissionsConnectionCreated_at | SubmissionsConnectionUpdated_at | SubmissionsConnectionPosition | SubmissionsConnectionSubmitted_by | SubmissionsConnectionCandidate | createSubmissionPayload | updateSubmissionPayload | deleteSubmissionPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionAvatar | UsersPermissionsUserConnectionFullname | createUserPayload | updateUserPayload | deleteUserPayload
 
 input InputID {
   id: ID!

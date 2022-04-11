@@ -97,10 +97,6 @@
       "via": "interviewed_by",
       "collection": "candidates"
     },
-    "loi_sent_to": {
-      "via": "loi_sent_by",
-      "collection": "candidates"
-    },
     "employee_modified": {
       "via": "modified_by",
       "collection": "employees"

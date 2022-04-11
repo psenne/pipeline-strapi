@@ -112,11 +112,6 @@
       "plugin": "users-permissions",
       "collection": "user",
       "dominant": true
-    },
-    "loi_sent_by": {
-      "via": "loi_sent_to",
-      "plugin": "users-permissions",
-      "model": "user"
     }
   }
 }
